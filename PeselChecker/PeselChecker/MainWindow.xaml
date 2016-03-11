@@ -4,9 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeselChecker"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Formularz Pesel" Height="270" Width="550" ResizeMode="NoResize">
+    <!--komentarz-->
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="45" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="PeselLabelSetPesel" Content="Wprowadź numer PESEL" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Top"
+        Margin="10,10,11,0"  Width="140" Height="26" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox x:Name="PeselTextBoxPesel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" TextAlignment="Left" TextWrapping="Wrap"
+		Margin="10,10,0,0" Padding="5" Width="194"  Grid.Row="0" Grid.Column="1" GotFocus="PeselTextBoxPesel_GotFocus" LostFocus="PeselTextBoxPesel_LostFocus" />
+        <Label x:Name="PeselLabelSelectGender" Content="Wybierz płeć" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Top"
+        Margin="10,10,11,0" Width="140" Height="26" Grid.Row="1" Grid.Column="0" />
+        <RadioButton x:Name="PeselRadioButtonMen" GroupName="Sex" Content="Mężczyzna" HorizontalAlignment="Left" VerticalAlignment="Top" 
+		Margin="10,16,0,0" Grid.Row="1"  Width="87" Height="17" Grid.Column="1" IsChecked="True"/>
+        <RadioButton x:Name="PeselRadioButtonWomen" GroupName="Sex" Content="Kobieta" HorizontalAlignment="Left" VerticalAlignment="Top"
+		Margin="139,16,0,0" Grid.Row="1"  Width="61" Height="17" Grid.Column="1" />
+        <Label x:Name="PeselLabelSetDate" Content="Podaj datę urodzenia" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Top"
+        Margin="10,10,11,0"  Width="140" Height="26" Grid.Row="2" Grid.Column="0" RenderTransformOrigin="0.512,4.154"/>
+        <DatePicker x:Name="PeselDatePickerBirthDate" DisplayDateEnd="{x:Static sys:DateTime.Now}" SelectedDate="{x:Static sys:DateTime.Now}" Text="Sex" HorizontalAlignment="Left" VerticalAlignment="Top"
+		Margin="10,10,0,0" Grid.Row="2" Width="194" Height="30" Padding="5" Grid.Column="1" FirstDayOfWeek="Monday" />
+        <ListBox x:Name="PeselNumberListBoxPesel" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top"
+		Margin="10,10,0,0" Height="160" Grid.Row="0" Grid.RowSpan="4"  Width="139"/>
+        <Button x:Name="PeselNumberCheck" Content="Sprawdź" HorizontalAlignment="Left" VerticalAlignment="Top"
+        Margin="56,10,0,0" Grid.Row="4"  Width="62" Click="ButtonCheck_Click" Height="20" Grid.Column="2"/>
+        <Button x:Name="PeselNumberLoad" Content="Wczytaj" HorizontalAlignment="Left" VerticalAlignment="Top"
+        Margin="138,10,0,0" Grid.Row="4"  Width="62" Click="ButtonLoad_Click" Height="20" Grid.Column="1" RenderTransformOrigin="1.758,0.4"/>
+        <Button x:Name="PeselNumberSave" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top"
+        Margin="10,10,0,0" Grid.Row="4"  Width="62" Click="ButtonSave_Click" Height="20" Grid.Column="1"/>
+        <Label x:Name="PeselLabelSelectSerializableType" Content="Wybierz typ serializacji" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Top"
+        Margin="10,10,11,0"  Width="140" Height="26" Grid.Row="3" Grid.Column="0" RenderTransformOrigin="0.512,4.154"/>
+        <RadioButton x:Name="SerializableButtonBin" GroupName="Serializable" Content="Bin" Grid.Column="1" HorizontalAlignment="Left" 
+        Margin="10,16,0,0" Grid.Row="3" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="SerializableButtonXml" GroupName="Serializable" Content="Xml" Grid.Column="1" HorizontalAlignment="Left" 
+        Margin="51,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <RadioButton x:Name="SerializableButtonJson" GroupName="Serializable" Content="Json" Grid.Column="1" HorizontalAlignment="Left" 
+        Margin="95,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <CheckBox x:Name="SerializableButtonGZip" Content="GZip" Grid.Column="1" HorizontalAlignment="Left" Margin="155,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>
     </Grid>
 </Window>
